@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Provide List of Configurations">
+    <meta name="author" content="Andrew Braun">
+
+    <title>PETRA -- Recording Configuration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap-theme.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/starter-template.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+<!-- Navagation Bar -->
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">PETRA</a>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('ctr_panel.control_panel') }}">Control Panel</a></li>
+              <li><a href="{{ url_for('rec_config.config') }}">Configurations</a></li>
+              <li><a href="{{ url_for('rec_downloader.list') }}">Recordings</a></li>
+              <li><a href="{{ url_for('rec_start.recorder') }}">Start Recording</a></li>
+              <li><a href="{{ url_for('bist.bist') }}">Built In Self Test</a></li>
+
+              {% if current_user.is_authenticated() %}
+              <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+              {% else %}
+              <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+              {% endif %}
+          </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Navagation Bar -->
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1>New Configuration</h1>
+      </div>
+      <br>
+      <form class="form-group" role="form" action="{{ url_for('rec_config.new') }}" method="POST">
+      <h3>Configuration Name</h3>
+      {{ form.config_name (class="form-control") }}
+
+      <h4>SFP Cage 1</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Active</td>
+            <td>IP Address</td>
+            <td>Port</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ form.enabled_1a (type="checkbox") }}</td>
+            <td>{{ form.ip_1a (class="form-control") }}</td>
+            <td>{{ form.port_1a (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_1b (type="checkbox") }}</td>
+            <td>{{ form.ip_1b (class="form-control") }}</td>
+            <td>{{ form.port_1b (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_1c (type="checkbox") }}</td>
+            <td>{{ form.ip_1c (class="form-control") }}</td>
+            <td>{{ form.port_1c (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_1c (type="checkbox") }}</td>
+            <td>{{ form.ip_1c (class="form-control") }}</td>
+            <td>{{ form.port_1c (class="form-control") }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>SFP Cage 2</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Active</td>
+            <td>IP Address</td>
+            <td>Port</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ form.enabled_2a (type="checkbox") }}</td>
+            <td>{{ form.ip_2a (class="form-control") }}</td>
+            <td>{{ form.port_2a (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_1b (type="checkbox") }}</td>
+            <td>{{ form.ip_2b (class="form-control") }}</td>
+            <td>{{ form.port_2b (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_2c (type="checkbox") }}</td>
+            <td>{{ form.ip_2c (class="form-control") }}</td>
+            <td>{{ form.port_2c (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_2d (type="checkbox") }}</td>
+            <td>{{ form.ip_2d (class="form-control") }}</td>
+            <td>{{ form.port_2d (class="form-control") }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>SFP Cage 3</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Active</td>
+            <td>IP Address</td>
+            <td>Port</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ form.enabled_3a (type="checkbox") }}</td>
+            <td>{{ form.ip_3a (class="form-control") }}</td>
+            <td>{{ form.port_3a (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_3b (type="checkbox") }}</td>
+            <td>{{ form.ip_3b (class="form-control") }}</td>
+            <td>{{ form.port_3b (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_3c (type="checkbox") }}</td>
+            <td>{{ form.ip_3c (class="form-control") }}</td>
+            <td>{{ form.port_3c (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_3d (type="checkbox") }}</td>
+            <td>{{ form.ip_3d (class="form-control") }}</td>
+            <td>{{ form.port_3d (class="form-control") }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>SFP Cage 4</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Active</td>
+            <td>IP Address</td>
+            <td>Port</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ form.enabled_4a (type="checkbox") }}</td>
+            <td>{{ form.ip_4a (class="form-control") }}</td>
+            <td>{{ form.port_4a (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_4b (type="checkbox") }}</td>
+            <td>{{ form.ip_4b (class="form-control") }}</td>
+            <td>{{ form.port_4b (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_4c (type="checkbox") }}</td>
+            <td>{{ form.ip_4c (class="form-control") }}</td>
+            <td>{{ form.port_4c (class="form-control") }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.enabled_4d (type="checkbox") }}</td>
+            <td>{{ form.ip_4d (class="form-control") }}</td>
+            <td>{{ form.port_4d (class="form-control") }}</td>
+          </tr>
+        </tbody>
+      </table>
+      {{ form.submit (type="submit", class="btn btn-lg btn-primary", method="POST") }}
+      </form>
+    </div> <!-- End Container -->
+  </body>
+</html>

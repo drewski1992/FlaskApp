@@ -1,0 +1,82 @@
+button a{
+	margin-right: 20px;
+	width: 135px;
+	margin-top: 5px;
+}
+
+#SystemStatus	{ 
+				border: 2px solid #798F99;
+				margin: 10px;
+				width: 49%;
+				border-radius: 20px;
+				padding: 10px 10px;
+				background: #EBF0FA;
+				-webkit-box-shadow: 0 8px 6px -6px black;
+	   			-moz-box-shadow: 0 8px 6px -6px black;
+	        	box-shadow: 0 8px 6px -6px black;
+}
+
+#Storage	{
+			border-bottom: 2px solid #798F99;
+			padding: 5px 5px;
+}
+
+#SystemInfo	{
+			border-bottom: 2px solid #798F99;
+			padding: 5px 5px;
+}
+
+#SystemControls{
+				border: 2px solid #798F99;
+				margin: 10px;
+				width: 47.5%;
+				border-radius: 20px;
+				padding: 10px 10px;
+				background: #EBF0FA;
+				-webkit-box-shadow: 0 8px 6px -6px black;
+	   			-moz-box-shadow: 0 8px 6px -6px black;
+	        	box-shadow: 0 8px 6px -6px black;
+}
+
+
+#RecentEventTag	{
+				border: 2px solid #798F99;
+				margin: 10px;
+				width: 49%;
+				border-radius: 20px;
+				padding: 10px 10px;
+				background: #EBF0FA;
+				-webkit-box-shadow: 0 8px 6px -6px black;
+	   			-moz-box-shadow: 0 8px 6px -6px black;
+	        	box-shadow: 0 8px 6px -6px black;
+}
+
+#RecentRecording	{
+				border: 2px solid #798F99;
+				margin: 10px;
+				width: 47.5%;
+				border-radius: 20px;
+				padding: 10px 10px;
+				background: #EBF0FA;
+				-webkit-box-shadow: 0 8px 6px -6px black;
+	   			-moz-box-shadow: 0 8px 6px -6px black;
+	        	box-shadow: 0 8px 6px -6px black;
+}
+
+#CurrentConf	{
+				border: 2px solid #798F99;
+				margin: 10px;
+				width: 47.5%;
+				border-radius: 20px;
+				padding: 10px 10px;
+				background: #EBF0FA;
+				-webkit-box-shadow: 0 8px 6px -6px black;
+	   			-moz-box-shadow: 0 8px 6px -6px black;
+	        	box-shadow: 0 8px 6px -6px black;
+}
+
+.ui-dialog-osx {
+    -moz-border-radius: 0 0 8px 8px;
+    -webkit-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px; border-width: 0 8px 8px 8px;
+}

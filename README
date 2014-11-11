@@ -1,0 +1,48 @@
+          _____                    _____                    _____
+         /\    \                  /\    \                  /\    \
+        /::\    \                /::\    \                /::\    \
+       /::::\    \              /::::\    \              /::::\    \
+      /::::::\    \            /::::::\    \            /::::::\    \
+     /:::/\:::\    \          /:::/\:::\    \          /:::/\:::\    \
+    /:::/  \:::\    \        /:::/__\:::\    \        /:::/  \:::\    \
+   /:::/    \:::\    \      /::::\   \:::\    \      /:::/    \:::\    \
+  /:::/    / \:::\    \    /::::::\   \:::\    \    /:::/    / \:::\    \
+ /:::/    /   \:::\ ___\  /:::/\:::\   \:::\    \  /:::/    /   \:::\    \
+/:::/____/     \:::|    |/:::/__\:::\   \:::\____\/:::/____/     \:::\____\
+\:::\    \     /:::|____|\:::\   \:::\   \::/    /\:::\    \      \::/    /
+ \:::\    \   /:::/    /  \:::\   \:::\   \/____/  \:::\    \      \/____/
+  \:::\    \ /:::/    /    \:::\   \:::\    \       \:::\    \
+   \:::\    /:::/    /      \:::\   \:::\____\       \:::\    \
+    \:::\  /:::/    /        \:::\   \::/    /        \:::\    \
+     \:::\/:::/    /          \:::\   \/____/          \:::\    \
+      \::::::/    /            \:::\    \               \:::\    \
+       \::::/    /              \:::\____\               \:::\____\
+        \::/____/                \::/    /                \::/    /
+         ~~                       \/____/                  \/____/
+
+
+Defense Engineering Corporation PETRA Web Interface
+
+1. Dependencies:
+        requirements.txt
+        use '$ sudo pip install -r requirements.txt' to install
+
+        It is recommended to use a virtualenv ie. a python virtual environment
+        for development purposes.
+        To set up an environment...
+        $ sudo pip install virtualenv
+        $ mkdir ~/VirtualEnv/
+        $ virtualenv -p /usr/bin/python2.7 ~/VirtualEnv/WebUI
+        $ .~/VirtualEnv/WebUI/bin/pip2.7 install -r ~/WebUI/requirements.txt
+        and to run
+        $ .~/VirtualEnv/WebUI/bin/python2.7 ~/WebUI run.py
+
+2. Development or Production release can be configured in run.py
+        Change project configuration type to either 'debug_config'
+        or 'production_config'
+
+
+3. Running ( configure address and port in run.py )
+        $ python2.7 run.py
+
+TODO : Add directions for logging in and administrating, add API directions

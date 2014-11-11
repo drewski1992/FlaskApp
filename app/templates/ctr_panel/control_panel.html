@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ControlPanel">
+
+	<!-- File Header -->
+  	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="description" content="Provide Description of System Status">
+    	<meta name="author" content="Andrew Braun">
+
+    	<title>PETRA -- Control Panel</title>
+
+
+    	<!-- Bootstrap core CSS -->
+    	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap-theme.min.css">
+
+    	<!-- Custom styles for this template -->
+    	<link href="../../static/css/starter-template.css" rel="stylesheet">
+    	
+    	<link rel="stylesheet" type="text/css" href="../../static/css/ctr_panel/ctr_panel.css">
+
+  	</head>
+  	<!-- End File Header -->
+
+  	<!-- Page Body -->
+  	<body>
+
+  	<!-- Navagation Bar -->
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+	    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	    		</button>
+	    		<a class="navbar-brand">PETRA</a>
+			</div>
+			<div class="navbar-collapse collapse">
+	    		<ul class="nav navbar-nav">
+	        		<li><a href="{{ url_for('ctr_panel.control_panel') }}">Control Panel</a></li>
+	        		<li><a href="{{ url_for('rec_config.config') }}">Configurations</a></li>
+	        		<li><a href="{{ url_for('rec_downloader.list') }}">Recordings</a></li>
+	        		<li><a href="{{ url_for('rec_start.recorder') }}">Start Recording</a></li>
+	        		<li><a href="{{ url_for('bist.bist') }}">Built In Self Test</a></li>
+
+	        		{% if current_user.is_authenticated() %}
+	        		<li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+	        		{% else %}
+	       		 	<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+	        		{% endif %}
+	    		</ul>
+			</div>
+		</div>
+	</div>
+	<!-- End Navagation Bar -->
+
+<div id="container1"class="container">
+  <div class="page-header">
+    <h1>Control Panel</h1>
+  </div><br>
+    <div class="row">
+
+        <div id="SystemStatus"class="col-sm-12 col-md-12 col-lg-6">
+          <h2 align="left">System Status</h2><br>
+          <div id="Storage">
+            <h3 align="left">Storage</h3>
+            <p>Available: <span id="space_avail"></span> GB</p>
+            <p>Used: <span id="space_used"></span> GB</p>
+            <p>Failed: <span id="space_fail"></span> GB</p>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" id="space_used_percent" style="width: 10%"><span class="sr-only">75% Complete (success)</span></div>
+              <div class="progress-bar progress-bar-danger" id="space_fail_percent" style="width: 10%"><span class='sr-only'>10% Complete (danger)</span></div>
+            </div>
+          </div>
+          <div id="SystemInfo">
+          <h3 align="left">Operation</h3>
+            <p align="left">System Time: <span id="sys_time"></span></p>
+            <p align="left">Config Active: <span id="config_active"></span> </p>
+            <p align="left">Operational Status: <span id="opr_status"></p>
+            <p align="left">Recording: <span id="recording"></p>
+          </div>
+        </div>
+
+
+
+        <div id="SystemControls" class="col-sm-12 col-md-12 col-lg-6">
+          <h2 align="left">System Controls</h2><br>
+            <p align="center">
+              <a type="button" href="{{ url_for('rec_start.recorder') }}" class="btn btn-lg btn-primary">Start Recording <span class="glyphicon glyphicon-hdd"></span></a>
+              <button type="button" id="bstand" class="btn btn-lg btn-warning">Standby</button>
+              <button type="button" id="bshut" class="btn btn-lg btn-danger">Shutdown <span class="glyphicon glyphicon-off"></span></button>
+            </p>
+        </div>
+
+
+        <div id="CurrentConf"class="col-sm-12 col-md-12 col-lg-6">
+          <h2 align="left">Current Configuration</h2> <br>
+          <div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Created Date</td>
+              </tr>
+              </thead>
+              <tbody>
+              {% for num in range(c_config_id|count) %}
+              <tr class="success" onclick="location.href='{{ url_for('rec_config.edit', id=c_config_id[num])}}'">
+                <td>{{ c_config_id[num] }}</td>
+                <td>{{ c_config_name[num] }}</td>
+                <td>{{ c_config_date[num] }}</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            <p>Click on Configuration to edit, or set as active.</p>
+          </div>  
+        </div>
+
+        <div id="RecentEventTag" class="col-sm-12 col-md-12 col-lg-6">
+          <h2 align="left">Recent Event Tags</h2> <br>
+          <div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <td>Tag ID</td>
+                <td>Recording Name</td>
+                <td>Date</td>
+                <td>Tag Description</td>
+              </tr>
+              </thead>
+              <tbody>
+              {% for num in range(tag_ids|count) %}
+                <tr>
+                  <td>{{ tag_ids[num] }}</td>
+                  <td>{{ tag_record_names[num] }}</td>
+                  <td>{{ tag_times[num] }}</td>
+                  <td>{{ tag_descriptions[num] }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>  
+        </div>
+
+
+        <div id="RecentRecording"class="col-sm-12 col-md-12 col-lg-6">
+          <h2 align="left">Recent Recordings</h2><br>
+          <div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <td>Record ID</td>
+                <td>Recording Name</td>
+                <td>Start Time</td>
+                <td>End Time</td>
+                <td>Size</td>
+                <td>Label</td>
+              </tr>
+              </thead>
+              <tbody>
+              {% for num in range(rec_ids|count) %}
+              <tr class="active" onclick="location.href='{{ url_for('rec_downloader.download', id=rec_ids[num])}}'">
+                <td>{{ rec_ids[num] }}</td>
+                <td>{{ rec_names[num] }}</td>
+                <td>{{ rec_starts[num] }}</td>
+                <td>{{ rec_ends[num] }}</td>
+                <td>{{ rec_labels[num] }}</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            <p>Click on Recording to Download or view details.</p>
+          </div>  
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../static/js/jquery-1.11.1.min.js"></script>
+<script src="../../static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/js/ctr_panel/ctr_panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Provide List of Recordings">
+    <meta name="author" content="Andrew Braun">
+
+    <title>PETRA -- Recording Download</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap-theme.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+<!-- Navagation Bar -->
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">PETRA</a>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('ctr_panel.control_panel') }}">Control Panel</a></li>
+              <li><a href="{{ url_for('rec_config.config') }}">Configurations</a></li>
+              <li><a href="{{ url_for('rec_downloader.list') }}">Recordings</a></li>
+              <li><a href="{{ url_for('rec_start.recorder') }}">Start Recording</a></li>
+              <li><a href="{{ url_for('bist.bist') }}">Built In Self Test</a></li>
+
+              {% if current_user.is_authenticated() %}
+              <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+              {% else %}
+              <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+              {% endif %}
+          </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Navagation Bar -->
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Recordings</h1>
+      </div>
+    
+      <div>
+        <table class="table table-hover table-grid">
+          <thead>
+          <tr>
+            <th>Record ID</th>
+            <th>Record Name</th>
+            <th>Record Label</th>
+            <th>Record Size</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for num in range(rec_ids|count) %}
+            <tr class="active" onclick="location.href='{{ url_for('rec_downloader.download', id=rec_ids[num])}}'">
+              <th>{{ rec_ids[num] }}</th>
+              <th>{{ rec_names[num] }}</th>
+              <th>{{ rec_labels[num] }}</th>
+              <th>{{ rec_sizes[num] }}</th>
+              <th>{{ rec_starts[num] }}</th>
+              <th>{{ rec_ends[num] }}</th>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+      
+
+
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title">Directions</h3></div>
+        <div class="panel-body">
+          <p>Click on a recording from the table to download, delete, or search for Event Tags</p>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="../../static/js/jquery-1.11.1.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+  </body>
+</html>
